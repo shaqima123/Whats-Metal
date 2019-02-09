@@ -117,14 +117,14 @@ shader 是运行在GPU上的脚本，它是 C++ 的一种子集语言。一般�
 let shader = """
 #include <metal_stdlib>
 using namespace metal;
-struct VertexIn {
-  float4 position [[ attribute(0) ]];
-};
-vertex float4 vertex_main(const VertexIn vertex_in [[ stage_in ]]) {
-  return vertex_in.position;
+
+vertex float4 vertex_main(constant packed_float3* vertex_array[[buffer(0)]],
+unsigned int vid[[vertex_id]]) {
+return float4(vertex_array[vid], 1.0);
 }
+
 fragment float4 fragment_main() {
-  return float4(0, 1, 0, 1);
+return float4(0, 1, 0, 1);
 }
 """
 ```
