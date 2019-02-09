@@ -205,7 +205,10 @@ commandBuffer.commit()
 步骤1 告诉 renderEncoder 已经没有更多的指令了，步骤2 是从 MTKView 中拿到一个 CAMetalDrawable 类实例，这个 drawable 持有着一个可供 Metal 读写的可绘制 texture。步骤3 就是要求 commandBuffer 将指令提交给 GPU 并且将结果渲染展示到 drawable 上面。这一步触发了真正的渲染，编译运行代码可以看到在屏幕上出现了一个全屏的绿色三角形，而背景部分则是被 clearColor 覆盖的米黄色。
 如图所示：
 
-![pipeline2.png](https://github.com/shaqima123/Resource/raw/master/WhatsMetal/triangle.PNG)
+![result.png](https://github.com/shaqima123/Resource/raw/master/WhatsMetal/triangle.PNG)
 
 通过绘制一个简单的三角形我们熟悉了 Metal 渲染的整体流程，这也是学习 Metal 的第一步而已，后续会继续介绍更多有关 Metal、图形学以及线代方面的东西。下一章主要介绍 3D 模型的渲染以及详细的 render pipeline 渲染管线工作流程。
+
+### Demo地址
+[点击查看 Whats Metal 第一节Demo](https://github.com/shaqima123/Whats-Metal)
 
