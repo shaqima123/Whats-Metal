@@ -15,6 +15,10 @@
 		4FF9984B22100DD70027C6F6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9984A22100DD70027C6F6 /* Shaders.metal */; };
 		4FF9984D22100DFC0027C6F6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9984C22100DFC0027C6F6 /* Model.swift */; };
 		4FF9984F22100E0D0027C6F6 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9984E22100E0D0027C6F6 /* Renderer.swift */; };
+		4FF9985E221031E80027C6F6 /* monkey.blend in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9985A221031E80027C6F6 /* monkey.blend */; };
+		4FF9985F221031E80027C6F6 /* monkey.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9985B221031E80027C6F6 /* monkey.mtl */; };
+		4FF99860221031E80027C6F6 /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9985C221031E80027C6F6 /* monkey.obj */; };
+		4FF99861221031E80027C6F6 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9985D221031E80027C6F6 /* monkey.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		4FF9984A22100DD70027C6F6 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		4FF9984C22100DFC0027C6F6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4FF9984E22100E0D0027C6F6 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		4FF9985A221031E80027C6F6 /* monkey.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = monkey.blend; sourceTree = "<group>"; };
+		4FF9985B221031E80027C6F6 /* monkey.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.mtl; sourceTree = "<group>"; };
+		4FF9985C221031E80027C6F6 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
+		4FF9985D221031E80027C6F6 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 		4F4F30D0220F40E100A4E35A /* PipeLine */ = {
 			isa = PBXGroup;
 			children = (
+				4FF99859221031E80027C6F6 /* Resource */,
 				4F4F30D1220F40E100A4E35A /* AppDelegate.swift */,
 				4F4F30D3220F40E100A4E35A /* ViewController.swift */,
 				4F4F30D5220F40E100A4E35A /* Main.storyboard */,
@@ -71,6 +80,17 @@
 				4FF9984E22100E0D0027C6F6 /* Renderer.swift */,
 			);
 			path = PipeLine;
+			sourceTree = "<group>";
+		};
+		4FF99859221031E80027C6F6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4FF9985A221031E80027C6F6 /* monkey.blend */,
+				4FF9985B221031E80027C6F6 /* monkey.mtl */,
+				4FF9985C221031E80027C6F6 /* monkey.obj */,
+				4FF9985D221031E80027C6F6 /* monkey.png */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,8 +151,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF99861221031E80027C6F6 /* monkey.png in Resources */,
 				4F4F30DC220F40E300A4E35A /* LaunchScreen.storyboard in Resources */,
 				4F4F30D9220F40E300A4E35A /* Assets.xcassets in Resources */,
+				4FF9985F221031E80027C6F6 /* monkey.mtl in Resources */,
+				4FF9985E221031E80027C6F6 /* monkey.blend in Resources */,
+				4FF99860221031E80027C6F6 /* monkey.obj in Resources */,
 				4F4F30D7220F40E100A4E35A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

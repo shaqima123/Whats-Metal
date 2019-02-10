@@ -29,6 +29,7 @@ class Renderer: NSObject {
         Renderer.device = device
         Renderer.commandQueue = device.makeCommandQueue()!
 
+        //1
         let dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
         vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options:[])
         
@@ -40,6 +41,8 @@ class Renderer: NSObject {
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
+        
+        //2
         
         do {
             pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
@@ -68,7 +71,11 @@ extension Renderer: MTKViewDelegate {
         }
         
         renderEncoder.setRenderPipelineState(pipelineState)
+        
+        //3
         renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        
+        //4
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3, instanceCount: 1)
         renderEncoder.endEncoding()
         

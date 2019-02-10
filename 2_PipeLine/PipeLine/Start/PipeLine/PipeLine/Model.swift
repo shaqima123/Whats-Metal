@@ -7,3 +7,8 @@
 //
 
 import MetalKit
+class Model {
+//    class func monkey(device: MTLDevice) -> MDLMesh {
+//
+//    }
+}
