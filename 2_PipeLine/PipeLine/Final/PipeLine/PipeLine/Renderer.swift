@@ -10,17 +10,11 @@ import MetalKit
 
 class Renderer: NSObject {
     
-    let vertexData: [Float] = [
-        0.0, 1.0, 0.0,
-        -1.0, -1.0, 0.0,
-        1.0, -1.0, 0.0
-    ]
-    
     static var device: MTLDevice!
     static var commandQueue: MTLCommandQueue!
     
-    var vertexBuffer: MTLBuffer!
     var pipelineState: MTLRenderPipelineState!
+    var mesh: MTKMesh!
     
     init(metalView: MTKView) {
         guard let device = metalView.device else {
@@ -28,9 +22,10 @@ class Renderer: NSObject {
         }
         Renderer.device = device
         Renderer.commandQueue = device.makeCommandQueue()!
-
-        let dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
-        vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options:[])
+        
+        //1
+        let mdlMesh = Model.monkey(device: device)
+        mesh = try! MTKMesh(mesh: mdlMesh, device: device)
         
         let library = device.makeDefaultLibrary()
         let vertexFunction = library?.makeFunction(name: "vertex_main")
@@ -40,6 +35,9 @@ class Renderer: NSObject {
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
+        
+        //2
+        pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mesh.vertexDescriptor)
         
         do {
             pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
@@ -68,8 +66,23 @@ extension Renderer: MTKViewDelegate {
         }
         
         renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3, instanceCount: 1)
+        //3
+        renderEncoder.setVertexBuffer(mesh.vertexBuffers[0].buffer,
+                                      offset: 0, index: 0)
+        renderEncoder.setTriangleFillMode(.lines)
+
+        //4
+        
+        for submesh in mesh.submeshes {
+            renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                indexCount: submesh.indexCount,
+                                                indexType: submesh.indexType,
+                                                indexBuffer: submesh.indexBuffer.buffer,
+                                                indexBufferOffset: submesh.indexBuffer.offset
+            )
+        }
+
+        
         renderEncoder.endEncoding()
         
         guard let drawable = view.currentDrawable else {

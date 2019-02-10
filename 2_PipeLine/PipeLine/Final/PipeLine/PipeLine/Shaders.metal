@@ -9,11 +9,15 @@
 #include <metal_stdlib>
 using namespace metal;
 
-vertex float4 vertex_main(constant packed_float3* vertex_array[[buffer(0)]],
-                          unsigned int vid[[vertex_id]]) {
-    return float4(vertex_array[vid], 1.0);
+struct VertexIn {
+    float4 position [[ attribute(0) ]];
+};
+
+vertex float4 vertex_main(const VertexIn vertex_in [[ stage_in ]]) {
+    return vertex_in.position;
 }
 
 fragment float4 fragment_main() {
     return float4(0, 1, 0, 1);
 }
+
