@@ -125,7 +125,7 @@ extension float4x4 {
     self.init()
     columns = (X, Y, Z, W)
   }
-  
+    
   // left-handed LookAt
   init(eye: float3, center: float3, up: float3) {
     let z = normalize(eye - center)
